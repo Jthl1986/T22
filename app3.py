@@ -395,16 +395,15 @@ def app4():
 
 
 #API TIPO DE CAMBIO
-    #url = "https://www.dolarsi.com/api/api.php?type=dolar"
-    #response = requests.get(url)
-    #if response.status_code == 200:
-    #    api_data = response.json()
-    #    value = api_data[2]['casa']['venta']
-    #    value2 = value.replace(',', '.')
-    #    dol = float(value2)
-    #else:
-    #    print("Failed to retrieve data")
-    dol = 814
+    url = "https://www.dolarsi.com/api/api.php?type=dolar"
+    response = requests.get(url)
+    if response.status_code == 200:
+        api_data = response.json()
+        value = api_data[2]['casa']['venta']
+        value2 = value.replace(',', '.')
+        dol = float(value2)
+    else:
+        print("Failed to retrieve data")
     left.metric("Dolar mayorista", '${:,}'.format(float(dol)))
      
 #SELECCIÓN DEPARTAMENTE Y PROVINCIA (INICIALIZACION)
