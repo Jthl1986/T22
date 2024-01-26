@@ -1401,6 +1401,6 @@ with st.sidebar:
         st.components.v1.html(f'<marquee behavior="scroll" direction="left" scrollamount="2">{news_html}</marquee>', height=30)
     st.markdown("---")
     st.caption("Desarrollado por JSantacecilia y JSaborido para Equipo Agro Banco Credicoop")
-    
+    st.caption("Datos del Informe Diciembre 2023 SAGYP")
     abrir_google_maps()
     #st_lottie(lottie_book, speed=0.5, height=50, key="initial")
