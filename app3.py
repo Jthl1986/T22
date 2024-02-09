@@ -413,6 +413,13 @@ def app4():
         value = api_data[2]['casa']['venta']
         value2 = value.replace(',', '.')
         dol = float(value2)
+    #url = "https://www.dolarsi.com/api/api.php?type=dolar"
+    #response = requests.get(url)
+    #if response.status_code == 200:
+    #   api_data = response.json()
+    #    value = api_data[2]['casa']['venta']
+    #    value2 = value.replace(',', '.')
+        dol = float(827)
     else:
         print("Failed to retrieve data")
     left.metric("Dolar mayorista", '${:,}'.format(float(dol)))
