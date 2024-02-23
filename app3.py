@@ -870,9 +870,23 @@ def app4():
     if "ingresos_totales" not in st.session_state:
         st.session_state["ingresos_totales"] = 0
         
+    def borra1():
+        st.session_state.gespr = st.session_state.gespr[:-1]       
+    def borra2():
+        st.session_state.gesar = st.session_state.gesar[:-1]
+        st.session_state.arrenda = st.session_state.arrenda[:-1]
+    def borra3():
+        st.session_state.gesar = st.session_state.gesar[:-1]
+        
     delete_last_row = st.button("Borrar última fila")
     if delete_last_row:
         if not st.session_state.dfp.empty:
+            if  st.session_state.dfp['Campos     '].iloc[-1] == "Propios":
+                borra1()
+            elif st.session_state.dfp['Campos     '].iloc[-1] == "Arrendados":
+                borra2()
+            else:
+                borra3()
             st.session_state["ingresos_totales"] -= st.session_state.dfp["Ingreso"].iloc[-1]
             st.session_state.dfp = st.session_state.dfp.iloc[:-1]
 
