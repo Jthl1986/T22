@@ -404,7 +404,7 @@ def app4():
     #   dol = float(827) #value2
     #else:
     #    print("Failed to retrieve data")
-    dol = float(838)
+    dol = float(841)
     left.metric("Dolar mayorista", '${:,}'.format(float(dol)))
      
 #SELECCIÓN DEPARTAMENTE Y PROVINCIA (INICIALIZACION)
