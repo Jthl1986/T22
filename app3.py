@@ -395,15 +395,16 @@ def app4():
 
 
 #API TIPO DE CAMBIO
-    url = "https://dolarapi.com/v1/dolares/mayorista"
-    response = requests.get(url)
-    if response.status_code == 200:
-      api_data = response.json()
-      value = api_data['venta']
-      dol = value
-    else:
-       print("Failed to retrieve data")
-    #dol = float(841) En caso de fallas
+    #url = "https://dolarapi.com/v1/dolares/mayorista"
+    #response = requests.get(url)
+    #if response.status_code == 200:
+    #  api_data = response.json()
+    #  value = api_data['venta']
+    #  dol = value
+    #else:
+    #   print("Failed to retrieve data")
+    
+    dol = float(844) #En caso de fallas
     left.metric("Dolar mayorista", '${:,}'.format(float(dol)))
      
 #SELECCIÓN DEPARTAMENTE Y PROVINCIA (INICIALIZACION)
