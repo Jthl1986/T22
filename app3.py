@@ -204,7 +204,7 @@ if response.status_code == 200:
             valores_rosario["pp" + cultivo] = float(valor_rosario)
 
     # Extraer la fecha
-    fecha1 = pizarra_data["fecha"]
+    fecha1 = "11/04/2024" #pizarra_data["fecha"]
 
     # Asignar los valores a las variables con los nombres personalizados
     pptrigo = valores_rosario["pptrigo"]
@@ -404,7 +404,7 @@ def app4():
     #else:
     #   print("Failed to retrieve data")
     
-    dol = float(853) #En caso de fallas
+    dol = float(865) #En caso de fallas
     left.metric("Dolar mayorista", '${:,}'.format(float(dol)))
      
 #SELECCIÓN DEPARTAMENTE Y PROVINCIA (INICIALIZACION)
