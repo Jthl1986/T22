@@ -62,9 +62,9 @@ def css():
 #    return r.json()
 
 #VALORES DE MANTENIMIENTO
-valorminc = 21000 #valor minimo cosecha
-valormaxc = 34000 #valor maximo cosecha
-valors = 18700 #valor referencia siembra
+valorminc = 75700 #valor minimo cosecha
+valormaxc = 122000 #valor maximo cosecha
+valors = 60000 #valor referencia siembra
 
 #CARGA RINDES HISTÓRICOS
 url = "https://raw.githubusercontent.com/Jthl1986/T1/main/Estimaciones.csv"
@@ -204,7 +204,7 @@ if response.status_code == 200:
             valores_rosario["pp" + cultivo] = float(valor_rosario)
 
     # Extraer la fecha
-    fecha1 = "11/04/2024" #pizarra_data["fecha"]
+    fecha1 = pizarra_data["fecha"] #"11/04/2024" #
 
     # Asignar los valores a las variables con los nombres personalizados
     pptrigo = valores_rosario["pptrigo"]
