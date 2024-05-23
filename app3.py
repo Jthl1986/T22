@@ -934,16 +934,16 @@ def app9():
 
     # Lista de enlaces
     enlaces = {
-        "Buenos Aires": "https://www.margenes.com/wp-content/uploads/2023/05/Buenos-Aires-Mayo-2023.pdf",
-        "Chaco": "https://www.margenes.com/wp-content/uploads/2022/02/pag-38-B.pdf",
-        "Córdoba": "https://www.margenes.com/wp-content/uploads/2023/06/Cordoba-Jun-23.pdf",
-        "Corrientes": "https://www.margenes.com/wp-content/uploads/2022/09/Corrientes-Sep-22.pdf",
+        "Buenos Aires": "https://www.margenes.com/wp-content/uploads/2023/11/Buenos-Aires-Mayo-2023B.pdf",
+        "Chaco": "https://www.margenes.com/wp-content/uploads/2024/02/Chaco-Feb-24.pdf",
+        "Córdoba": "https://www.margenes.com/wp-content/uploads/2024/01/Cordoba-Ene-24.pdf",
+        "Corrientes": "https://www.margenes.com/wp-content/uploads/2023/09/Corrientes-sep-23.pdf",
         "Entre Ríos": "https://www.margenes.com/wp-content/uploads/2023/07/Entre-Rios-Jul-23.pdf",
-        "La Pampa": "https://www.margenes.com/wp-content/uploads/2022/12/La-Pampa-Dic-22.pdf",
+        "La Pampa": "https://www.margenes.com/wp-content/uploads/2023/08/La-Pampa-Ago-23.pdf",
         "Mendoza": "https://www.margenes.com/wp-content/uploads/2020/10/Mendoza-oct-20.pdf",
-        "NOA": "https://www.margenes.com/wp-content/uploads/2023/01/NOA-2023.pdf",
-        "San Luis": "https://www.margenes.com/wp-content/uploads/2022/11/San-Luis-Oct-22.pdf",
-        "Santa Fe": "https://www.margenes.com/wp-content/uploads/2023/02/Santa-Fe-Feb-23.pdf",
+        "NOA": "https://www.margenes.com/wp-content/uploads/2024/03/NOA-Mar-24.pdf",
+        "San Luis": "https://www.margenes.com/wp-content/uploads/2023/11/San-Luis-Oct-23.pdf",
+        "Santa Fe": "https://www.margenes.com/wp-content/uploads/2023/12/Santa-Fe-Dic-23.pdf",
         "Santiago de Estero": "https://www.margenes.com/wp-content/uploads/2022/11/Santiago-de-Estero-Nov-22.pdf"
     }
     
