@@ -679,7 +679,7 @@ def app4():
         "Sur Cordoba" : {"Trigo": gesptrigo8, "Maíz": gespmaiz8, "Soja 1ra": gespsoja18, "Soja 2da": gespsoja28, "Girasol":gespgirasol8, "Cebada": gespcebada8, "Sorgo": gespsorgo8},
         "Centro Norte Cordoba" : {"Trigo": gesptrigo9, "Maíz": gespmaiz9, "Soja 1ra": gespsoja19, "Soja 2da": gespsoja29, "Girasol":gespgirasol9, "Cebada": gespcebada9, "Sorgo": gespsorgo9},
         "Santa Fe Centro" : {"Trigo": gesptrigo10, "Maíz": gespmaiz10, "Soja 1ra": gespsoja110, "Soja 2da": gespsoja210, "Girasol":gespgirasol10, "Cebada": gespcebada10, "Sorgo": gespsorgo11},
-        "Santa Fe Norte" : {"Trigo": gesptrigo11, "Maíz": gespmaiz11, "Soja 1ra": gespsoja111, "Soja 2da": gespsoja211, "Girasol":gespgirasol11, "Cebada": gespcebada11, "Sorgo": gespsorgo11},
+        "Santa Fe Norte" : {"Trigo": gesptrigo11, "Maíz": gespmaiz11, "Soja 1ra": gespsoja111, "Soja 2da": gespsoja211, "Girasol":gespgirasol11, "Cebada": gespcebada10, "Sorgo": gespsorgo11},
         "Centro Este Entre Rios" : {"Trigo": gesptrigo12, "Maíz": gespmaiz12, "Soja 1ra": gespsoja112, "Soja 2da": gespsoja212, "Girasol":gespgirasol12, "Cebada": gespcebada12, "Sorgo": gespsorgo12},
         "NEA Oeste" : {"Trigo": gesptrigo13, "Maíz": gespmaiz13, "Soja 1ra": gespsoja113, "Soja 2da": gespsoja213, "Girasol":gespgirasol13, "Cebada": gespcebada13, "Sorgo": gespsorgo13},
         "NEA Este" : {"Trigo": gesptrigo14, "Maíz": gespmaiz14, "Soja 1ra": gespsoja114, "Soja 2da": gespsoja214, "Girasol":gespgirasol14, "Cebada": gesptrigo14, "Sorgo": gespsorgo14},
