@@ -1415,7 +1415,7 @@ with st.sidebar:
             news_html += f'<a href="{item["link"]}" target="_blank">{item["title"]}</a> | '
         st.components.v1.html(f'<marquee behavior="scroll" direction="left" scrollamount="2">{news_html}</marquee>', height=30)
     st.markdown("---")
-    st.caption("Desarrollado por JSantacecilia y [JSaborido](https://docs.google.com/spreadsheets/d/1CzxbLmVj8oT_dBilAjbxBRRR6oYNsM30TmFMp5VGjEU/edit?usp=sharing) para Equipo Agro Banco Credicoop")
+    st.caption("Desarrollado por JSantacecilia y JSaborido para Equipo Agro Banco Credicoop")
     st.caption("Datos del Informe Marzo 2024 SAGYP")
     abrir_google_maps()
     #st_lottie(lottie_book, speed=0.5, height=50, key="initial")
