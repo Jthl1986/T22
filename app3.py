@@ -1423,7 +1423,6 @@ with st.sidebar:
     <a href="https://docs.google.com/spreadsheets/d/1CzxbLmVj8oT_dBilAjbxBRRR6oYNsM30TmFMp5VGjEU/edit?usp=sharing" style="color: inherit; text-decoration: none;">JSaborido</a> 
     para Equipo Agro Banco Credicoop
     """, unsafe_allow_html=True)
-    st.caption("Desarrollado por JSantacecilia y [JSaborido](https://docs.google.com/spreadsheets/d/1CzxbLmVj8oT_dBilAjbxBRRR6oYNsM30TmFMp5VGjEU/edit?usp=sharing) para Equipo Agro Banco Credicoop")
     st.caption("Datos del Informe Marzo 2024 SAGYP")
     abrir_google_maps()
     #st_lottie(lottie_book, speed=0.5, height=50, key="initial")
