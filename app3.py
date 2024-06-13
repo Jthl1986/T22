@@ -391,12 +391,6 @@ def app4():
     
     
     st.title("🌽 Planteo productivo")
-    # Enlace al que quieres que lleve al hacer clic en el ícono
-    icon_text = "Este es el texto que quieres mostrar cuando se hace clic en el ícono."
-
-    # Usar un expander para mostrar el texto al hacer clic en el ícono
-    with st.expander("🌽"):
-        st.write(icon_text)
     left, center, right = st.columns(3)
 
 
