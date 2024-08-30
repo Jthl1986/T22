@@ -203,15 +203,15 @@ if response.status_code == 200:
         else:
             valores_rosario["pp" + cultivo] = float(valor_rosario)
 
-    # Extraer la fecha
-    fecha1 = "29/08/2024" #pizarra_data["fecha"] #"11/04/2024" #
+# Extraer la fecha
+fecha1 = "29/08/2024" #pizarra_data["fecha"] #"11/04/2024" #
 
-    # Asignar los valores a las variables con los nombres personalizados
-    pptrigo = 1 #valores_rosario["pptrigo"]
-    ppsoja = 1 #valores_rosario["ppsoja"]
-    ppmaiz = 1 #valores_rosario["ppmaiz"]
-    ppgirasol = 1 #valores_rosario["ppgirasol"]
-    ppsorgo = 1 #valores_rosario["ppsorgo"]
+# Asignar los valores a las variables con los nombres personalizados
+pptrigo = 1 #valores_rosario["pptrigo"]
+ppsoja = 1 #valores_rosario["ppsoja"]
+ppmaiz = 1 #valores_rosario["ppmaiz"]
+ppgirasol = 1 #valores_rosario["ppgirasol"]
+ppsorgo = 1 #valores_rosario["ppsorgo"]
 
 
 def app1():
