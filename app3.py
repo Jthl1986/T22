@@ -400,7 +400,7 @@ def app4():
     if response.status_code == 200:
       api_data = response.json()
       value = api_data['venta']
-      dol = value
+      #dol = value
     else:
        print("Failed to retrieve data")
     
