@@ -400,11 +400,11 @@ def app4():
     if response.status_code == 200:
       api_data = response.json()
       value = api_data['venta']
-      #dol = value
+      dol = value
     else:
        print("Failed to retrieve data")
     
-    dol = float(940) #En caso de fallas
+    #dol = float(940) #En caso de fallas
     left.metric("Dolar mayorista", '${:,}'.format(float(dol)))
      
 #SELECCIÓN DEPARTAMENTE Y PROVINCIA (INICIALIZACION)
