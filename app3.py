@@ -988,6 +988,10 @@ def app9():
     st.subheader("Mapa de datos e informes PAS - Bolsa de Buenos Aires")
     panorama_agricola_semanal_link = "https://www.bolsadecereales.com/estimaciones-informes"
     st.markdown(f"**[Panorama Agrícola Semanal]({panorama_agricola_semanal_link})**")
+    
+    st.subheader("Mapa semanal reservas hídricas - INTA SEPA (solo mapa sin informe)")
+    sepasemanal_link = "https://sepa.inta.gob.ar/productos/"
+    st.markdown(f"**[Mapa INTA SEPA]({sepasemanal_link})**")
         
 def app5():
     left, right = st.columns(2)
