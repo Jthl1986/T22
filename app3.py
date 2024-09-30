@@ -969,6 +969,10 @@ def app9():
     ora_semanal_link = "http://www.ora.gob.ar/camp_actual_reservas.php"
     st.markdown(f"**[Reservas hídricas (todas las regiones)]({ora_semanal_link})**")
     
+    st.subheader("Reservas hídricas y evolución cultivos semanal - INTA SEPA")
+    inta_semanal_link = "https://www.argentina.gob.ar/agromet-semanal"
+    st.markdown(f"**[Reservas hídricas INTA (todas las regiones)]({inta_semanal_link})**")
+    
     st.subheader("Mapa de Reservas hídricas - Todo el país")
     ora_semanal_link = "https://www.meteoblue.com/es/tiempo/mapas/federal_argentina_3433956#coords=4/-34.55/-61.8&map=soilMoisture~daily~auto~40-100%20cm%20down~none"
     st.markdown(f"**[Reservas hídricas (Meteoblue)]({ora_semanal_link})**")
