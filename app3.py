@@ -528,7 +528,7 @@ def app4():
         return round(promedios_por_cultivo.iloc[0,1]/1000,2)
         
 #LECTURA VARIABLES
-    df = pd.read_csv('https://raw.githubusercontent.com/Jthl1986/T1/main/variablesmarzo24vf.csv')
+    df = pd.read_csv('https://raw.githubusercontent.com/Jthl1986/T1/main/variablessep24vf.csv')
 
     # Crear un diccionario para almacenar las variables y valores
     variables_dict = {}
@@ -612,7 +612,7 @@ def app4():
             "Sur Cordoba" : {"Trigo": ctrigo8, "Maíz": cmaiz8, "Soja 1ra": csoja18, "Soja 2da": csoja28, "Girasol":cgirasol8, "Cebada": ccebada8, "Sorgo": csorgo8},
             "Centro Norte Cordoba" : {"Trigo": ctrigo9, "Maíz": cmaiz9, "Soja 1ra": csoja19, "Soja 2da": csoja29, "Girasol":cgirasol9, "Cebada": ccebada9, "Sorgo": csorgo9},
             "Santa Fe Centro" : {"Trigo": ctrigo10, "Maíz": cmaiz10, "Soja 1ra": csoja110, "Soja 2da": csoja210, "Girasol":cgirasol10, "Cebada": ccebada10, "Sorgo": csorgo11},
-            "Santa Fe Norte" : {"Trigo": ctrigo11, "Maíz": cmaiz11, "Soja 1ra": csoja111, "Soja 2da": csoja211, "Girasol":cgirasol11, "Cebada": ccebada11, "Sorgo": csorgo11},
+            "Santa Fe Norte" : {"Trigo": ctrigo11, "Maíz": cmaiz11, "Soja 1ra": csoja111, "Soja 2da": csoja211, "Girasol":cgirasol11, "Cebada": notuse11, "Sorgo": csorgo11},
             "Centro Este Entre Rios" : {"Trigo": ctrigo12, "Maíz": cmaiz12, "Soja 1ra": csoja112, "Soja 2da": csoja212, "Girasol":cgirasol12, "Cebada": ccebada12, "Sorgo": csorgo12},
             "NEA Oeste" : {"Trigo": ctrigo13, "Maíz": cmaiz13, "Soja 1ra": csoja113, "Soja 2da": csoja213, "Girasol":cgirasol13, "Cebada": ccebada13, "Sorgo": csorgo13},
             "NEA Este" : {"Trigo": ctrigo14, "Maíz": cmaiz14, "Soja 1ra": csoja114, "Soja 2da": csoja214, "Girasol":cgirasol14, "Cebada": notuse14, "Sorgo": csorgo14},
