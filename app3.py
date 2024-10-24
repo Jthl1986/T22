@@ -350,7 +350,7 @@ def app4():
 
     # Mensajes personalizados
     # URL del archivo JSON
-    url_archivo = 'https://raw.githubusercontent.com/Jthl1986/T1/master/mensajes.json'
+    url_archivo = 'https://raw.githubusercontent.com/Jthl1986/T1/master/mensaje.json'
     
     # Realizar la solicitud HTTP para descargar el archivo
     response = requests.get(url_archivo)
