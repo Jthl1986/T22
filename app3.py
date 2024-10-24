@@ -207,11 +207,11 @@ if response.status_code == 200:
 fecha1 = pizarra_data["fecha"] #"11/04/2024" #   Sacar fecha y numeral y tabular
 
 # Asignar los valores a las variables con los nombres personalizados
-pptrigo = valores_rosario["pptrigo"]    
-ppsoja = valores_rosario["ppsoja"]     
-ppmaiz = valores_rosario["ppmaiz"]     
-ppgirasol = valores_rosario["ppgirasol"] 
-ppsorgo = valores_rosario["ppsorgo"]     
+pptrigo = 1 #valores_rosario["pptrigo"]    
+ppsoja = 1 #valores_rosario["ppsoja"]     
+ppmaiz = 1 #valores_rosario["ppmaiz"]     
+ppgirasol = 1 #valores_rosario["ppgirasol"] 
+ppsorgo = 1 #valores_rosario["ppsorgo"]     
 
 
 def app1():
