@@ -1424,11 +1424,11 @@ with st.sidebar:
         st.components.v1.html(f'<marquee behavior="scroll" direction="left" scrollamount="2">{news_html}</marquee>', height=30)
     st.markdown("---")
     # Enlace al que quieres que lleve al hacer clic en "JSaborido"
-    link_jsaborido = "https://docs.google.com/spreadsheets/d/1CzxbLmVj8oT_dBilAjbxBRRR6oYNsM30TmFMp5VGjEU/edit?usp=sharing"
+    link_jsaborido = "https://www.magyp.gob.ar/sitio/areas/analisis_economico/margenes/"#https://docs.google.com/spreadsheets/d/1CzxbLmVj8oT_dBilAjbxBRRR6oYNsM30TmFMp5VGjEU/edit?usp=sharing
 # Usar HTML en st.markdown para incluir el enlace sin que se note la diferencia en estilo
     st.caption("""
     Desarrollado por JSantacecilia y 
-    <a href="https://docs.google.com/spreadsheets/d/1CzxbLmVj8oT_dBilAjbxBRRR6oYNsM30TmFMp5VGjEU/edit?usp=sharing" style="color: inherit; text-decoration: none;">JSaborido</a> 
+    <a href="https://www.magyp.gob.ar/sitio/areas/analisis_economico/margenes/" style="color: inherit; text-decoration: none;">JSaborido</a> 
     para Equipo Agro Banco Credicoop
     """, unsafe_allow_html=True)
     st.caption("Datos del Informe Septiembre 2024 SAGYP")
