@@ -1427,7 +1427,7 @@ with st.sidebar:
     link_jsaborido = "https://www.magyp.gob.ar/sitio/areas/analisis_economico/margenes/"#https://docs.google.com/spreadsheets/d/1CzxbLmVj8oT_dBilAjbxBRRR6oYNsM30TmFMp5VGjEU/edit?usp=sharing
 # Usar HTML en st.markdown para incluir el enlace sin que se note la diferencia en estilo
     st.caption("""
-    Desarrollado por JSantacecilia  
+    Desarrollado por JSantacecilia  y JSaborido
     para Equipo Agro 
     """, unsafe_allow_html=True)
     st.caption("Datos del Informe Septiembre 2024 SAGYP")
