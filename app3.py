@@ -204,7 +204,7 @@ url = "https://www.ggsa.com.ar/get_pizarra/"
 #            valores_rosario["pp" + cultivo] = float(valor_rosario)
 
 # Extraer la fecha
-fecha1 = "02/04/2025" #pizarra_data["fecha"] #"11/04/2024" #   Sacar fecha y numeral y tabular
+fecha1 = "Momentaneamente no estan disponibles los precios de pizarra" #pizarra_data["fecha"] #"11/04/2024" #   Sacar fecha y numeral y tabular
 
 # Asignar los valores a las variables con los nombres personalizados
 pptrigo = 1 #valores_rosario["pptrigo"]    
