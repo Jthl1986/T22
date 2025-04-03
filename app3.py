@@ -180,38 +180,38 @@ def app():
 url = "https://www.ggsa.com.ar/get_pizarra/"
 
 # Realizar la solicitud HTTP para obtener el contenido JSON
-requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-response = requests.get(url, verify=False)
+#requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+#response = requests.get(url, verify=False)
 
 # Verificar si la solicitud fue exitosa (código 200)
-if response.status_code == 200:
+#if response.status_code == 200:
     # Obtener el contenido JSON de la respuesta
-    data = response.json()
+#    data = response.json()
 
     # Extraer los valores para Rosario y los nombres de los cultivos
-    pizarra_data = data["pizarra"][0]
-    cultivos = ["trigo", "soja", "maiz", "girasol", "sorgo"]
-    valores_rosario = {}
+#    pizarra_data = data["pizarra"][0]
+#    cultivos = ["trigo", "soja", "maiz", "girasol", "sorgo"]
+#    valores_rosario = {}
 
     # Verificar si el valor de Rosario es "0.00" y usar el valor estimativo en su lugar
-    for cultivo in cultivos:
-        valor_rosario = pizarra_data[cultivo]["rosario"]
-        valor_estimativo = pizarra_data[cultivo]["estimativo"]
+#    for cultivo in cultivos:
+#        valor_rosario = pizarra_data[cultivo]["rosario"]
+#        valor_estimativo = pizarra_data[cultivo]["estimativo"]
 
-        if valor_rosario == "0.00":
-            valores_rosario["pp" + cultivo] = float(valor_estimativo)
-        else:
-            valores_rosario["pp" + cultivo] = float(valor_rosario)
+#        if valor_rosario == "0.00":
+#            valores_rosario["pp" + cultivo] = float(valor_estimativo)
+#        else:
+#            valores_rosario["pp" + cultivo] = float(valor_rosario)
 
 # Extraer la fecha
-fecha1 = pizarra_data["fecha"] #"11/04/2024" #   Sacar fecha y numeral y tabular
+fecha1 = "02/04/2025" #pizarra_data["fecha"] #"11/04/2024" #   Sacar fecha y numeral y tabular
 
 # Asignar los valores a las variables con los nombres personalizados
-pptrigo = valores_rosario["pptrigo"]    
-ppsoja = valores_rosario["ppsoja"]     
-ppmaiz = valores_rosario["ppmaiz"]     
-ppgirasol = valores_rosario["ppgirasol"] 
-ppsorgo = valores_rosario["ppsorgo"]     
+pptrigo = 1 #valores_rosario["pptrigo"]    
+ppsoja = 1 #valores_rosario["ppsoja"]     
+ppmaiz = 1 #valores_rosario["ppmaiz"]     
+ppgirasol = 1 #valores_rosario["ppgirasol"] 
+ppsorgo = 1 #valores_rosario["ppsorgo"]     
 
 
 def app1():
