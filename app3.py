@@ -993,7 +993,7 @@ def app9():
     sepasemanal_link = "https://sepa.inta.gob.ar/productos/"
     st.markdown(f"**[Mapa INTA SEPA]({sepasemanal_link})**")
     
-    st.subheader("Datos de otros cultivos (arroz, algodón, maní, legumbres, etc")
+    st.subheader("Datos de otros cultivos (arroz, algodón, maní, legumbres, etc)")
     sagyp_link = "https://www.magyp.gob.ar/sitio/areas/analisis_economico/tablero/agricolas/arroz-algodon-legumbres.php?accion=imp"
     st.markdown(f"**[Resultados de cultivos Arroz, algodón, maní, legumbres]({sagyp_link})**")
         
