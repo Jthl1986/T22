@@ -992,6 +992,10 @@ def app9():
     st.subheader("Mapa semanal reservas hídricas - INTA SEPA (solo mapa sin informe)")
     sepasemanal_link = "https://sepa.inta.gob.ar/productos/"
     st.markdown(f"**[Mapa INTA SEPA]({sepasemanal_link})**")
+    
+    st.subheader("Datos de otros cultivos (arroz, algodón, maní, legumbres, etc")
+    sagyp_link = "https://www.magyp.gob.ar/sitio/areas/analisis_economico/tablero/agricolas/arroz-algodon-legumbres.php?accion=imp"
+    st.markdown(f"**[Resultados de cultivos Arroz, algodón, maní, legumbres]({sagyp_link})**")
         
 def app5():
     left, right = st.columns(2)
@@ -1110,7 +1114,7 @@ def app5():
         # Mensaje sobre los gastos de estructura
         mensaje_estructura = "fueron estimados de acuerdo a información suministrada por la Secretaria de Agricultura, Ganadería y Pesca" if gastos_estructura_estimados else "corresponden a los informados por el socio"
 
-        st.write(f"**Aclaraciones del cálculo:** Los rindes utilizados para la proyección corresponden al promedio histórico de las últimas cinco campañas (desde 2018/2010 a 2022/2023) para el departamento de {st.session_state.departamento_seleccionado}, provincia de {st.session_state.provincia_seleccionada}. {mensaje_arrendamiento} Los gastos de estructura {mensaje_estructura}.")
+        st.write(f"**Aclaraciones del cálculo:** Los rindes utilizados para la proyección corresponden al promedio histórico de las últimas cinco campañas (desde 2018/2019 a 2022/2023) para el departamento de {st.session_state.departamento_seleccionado}, provincia de {st.session_state.provincia_seleccionada}. {mensaje_arrendamiento} Los gastos de estructura {mensaje_estructura}.")
         
         
         # Barras en tres columnas izquierda
