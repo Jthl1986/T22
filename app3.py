@@ -91,7 +91,7 @@ def app():
     ternera=tabla[7:11]
     vaquillona=tabla[11:14]
     vaca=tabla[22:23]  
-    fecha= "Semana: 01/12/2024 al 09/12/2024" #(tabla[25:26].values)[0][0] #el predeterminado es 25:26
+    fecha= (tabla[25:26].values)[0][0] #el predeterminado es 25:26 #"Semana: 01/12/2024 al 09/12/2024" 
     ternero160=int(ternero.promedio[0][2:6])
     ternero180=int(ternero.promedio[1][2:6])
     ternero200=int(ternero.promedio[2][2:6])
@@ -1434,6 +1434,6 @@ with st.sidebar:
     Desarrollado por JSantacecilia  y JSaborido
     para Equipo Agro 
     """, unsafe_allow_html=True)
-    st.caption("Datos del Informe Septiembre 2024 SAGYP")
+    st.caption("Datos del Informe Marzo 2025 SAGYP")
     abrir_google_maps()
     #st_lottie(lottie_book, speed=0.5, height=50, key="initial")
