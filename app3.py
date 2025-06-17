@@ -91,7 +91,7 @@ def app():
     ternera=tabla[7:11]
     vaquillona=tabla[11:14]
     vaca=tabla[22:23]  
-    fecha= (tabla[25:26].values)[0][0] #el predeterminado es 25:26 #"Semana: 01/12/2024 al 09/12/2024" 
+    fecha= "Semana: 09/06/2025 al 13/06/2025" #(tabla[25:26].values)[0][0] #el predeterminado es 25:26 #
     ternero160=int(ternero.promedio[0][2:6])
     ternero180=int(ternero.promedio[1][2:6])
     ternero200=int(ternero.promedio[2][2:6])
@@ -528,7 +528,7 @@ def app4():
         return round(promedios_por_cultivo.iloc[0,1]/1000,2)
         
 #LECTURA VARIABLES
-    df = pd.read_csv('https://raw.githubusercontent.com/Jthl1986/T1/main/variablessep24vf2.csv')
+    df = pd.read_csv('https://raw.githubusercontent.com/Jthl1986/T1/main/variablesmar25vf.csv')
 
     # Crear un diccionario para almacenar las variables y valores
     variables_dict = {}
