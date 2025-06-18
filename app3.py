@@ -412,7 +412,7 @@ def app4():
         st.session_state.provincia_seleccionada = None    
     if 'departamento_seleccionado' not in st.session_state:
         st.session_state.departamento_seleccionado = None    
-    url = "https://raw.githubusercontent.com/Jthl1986/T1/main/Estimaciones8.csv"
+    url = "https://raw.githubusercontent.com/Jthl1986/T1/main/Estimaciones7.csv"
     dfr = pd.read_csv(url, encoding='ISO-8859-1', sep=',')    
     # Obtener las provincias únicas
     provincias = dfr['Provincia'].unique()    
