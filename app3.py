@@ -1114,7 +1114,7 @@ def app5():
         # Mensaje sobre los gastos de estructura
         mensaje_estructura = "fueron estimados de acuerdo a información suministrada por la Secretaria de Agricultura, Ganadería y Pesca" if gastos_estructura_estimados else "corresponden a los informados por el socio"
 
-        st.write(f"**Aclaraciones del cálculo:** Los rindes utilizados para la proyección corresponden al promedio histórico de las últimas cinco campañas (desde 2018/2019 a 2022/2023) para el departamento de {st.session_state.departamento_seleccionado}, provincia de {st.session_state.provincia_seleccionada}. {mensaje_arrendamiento} Los gastos de estructura {mensaje_estructura}.")
+        st.write(f"**Aclaraciones del cálculo:** Los rindes utilizados para la proyección corresponden al promedio histórico para las últimas campañas (desde 2013/2014 a 2024/2025) para el departamento de {st.session_state.departamento_seleccionado}, provincia de {st.session_state.provincia_seleccionada}. {mensaje_arrendamiento} Los gastos de estructura {mensaje_estructura}.")
         
         
         # Barras en tres columnas izquierda
