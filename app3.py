@@ -547,7 +547,63 @@ def app4():
             st.table(escenarios_data)
         else:
             st.warning("Se requieren al menos 3 campañas para calcular los escenarios")
-             
+        
+        # NUEVA SECCIÓN DE VISUALIZACIÓN
+        st.subheader("Visualización de Escenarios")
+        
+        if len(rendimientos) >= 3:
+            
+            fig, ax = plt.subplots(figsize=(10, 6))
+            
+            # Convertir campañas a datetime si es posible (para eje X ordenado)
+            try:
+                df_filtrado['Campaña_dt'] = pd.to_datetime(df_filtrado['Campaña'], format='%Y/%Y')
+                x_vals = df_filtrado['Campaña_dt']
+                x_label = "Campaña"
+            except:
+                x_vals = df_filtrado['Campaña'].astype(str)
+                x_label = "Campaña (texto)"
+            
+            # Gráfico de línea de la serie histórica
+            ax.plot(x_vals, df_filtrado['Rendimiento'], 
+                    marker='o', linestyle='-', color='#1f77b4', 
+                    label='Rendimiento histórico')
+            
+            # Líneas horizontales para los escenarios
+            ax.axhline(normal, color='green', linestyle='--', alpha=0.7, label='Normal')
+            ax.axhline(bueno, color='blue', linestyle=':', alpha=0.7, label='Bueno')
+            ax.axhline(malo, color='red', linestyle='-.', alpha=0.7, label='Malo')
+            
+            # Relleno entre escenarios
+            ax.fill_between(x_vals, malo, bueno, color='yellow', alpha=0.1)
+            
+            # Añadir etiquetas de valores
+            ax.text(x_vals.iloc[-1], malo, f' Malo: {malo:.2f} tn/ha', va='center', ha='left')
+            ax.text(x_vals.iloc[-1], normal, f' Normal: {normal:.2f} tn/ha', va='center', ha='left')
+            ax.text(x_vals.iloc[-1], bueno, f' Bueno: {bueno:.2f} tn/ha', va='center', ha='left')
+            
+            # Configuración del gráfico
+            ax.set_title(f"Rendimientos históricos y escenarios - {cultivos_seleccionados}")
+            ax.set_xlabel(x_label)
+            ax.set_ylabel("Rendimiento (tn/ha)")
+            ax.legend()
+            ax.grid(True, linestyle='--', alpha=0.6)
+            
+            # Rotar etiquetas del eje X si son muchas
+            if len(x_vals) > 5:
+                plt.xticks(rotation=45)
+            
+            st.pyplot(fig)
+            
+            # Explicación estadística
+            st.markdown("""
+            **Interpretación del gráfico:**
+            - **Línea azul**: Serie histórica de rendimientos
+            - **Líneas discontinuas**: Umbrales de escenarios
+            - **Área amarilla**: Rango entre escenarios Malo y Bueno
+            - Los escenarios se calcularon dividiendo la serie en tercios (percentiles ~33% y ~66%)
+            """)    
+        
 #RINDE AUTOMATICO
     def rindeautomatico(tipo):
         cultivos_seleccionados = tipo
