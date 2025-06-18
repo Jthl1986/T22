@@ -553,6 +553,7 @@ def app4():
         
         if len(rendimientos) >= 3:
             # Asegurarnos de usar los valores numéricos ya convertidos a tn/ha
+            df_filtrado['Rendimiento'] = pd.to_numeric(df_filtrado['Rendimiento'], errors='coerce')
             df_filtrado['Rendimiento_tn'] = df_filtrado['Rendimiento'] / 1000  # Conversión a tn/ha
             
             fig, ax = plt.subplots(figsize=(10, 6))
