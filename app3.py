@@ -539,9 +539,9 @@ def app4():
             escenarios_data = {
                 "Escenario": ["Malo", "Normal", "Bueno"],
                 "Rendimiento (tn/ha)": [
-                    f"{malo/1000:.2f}",
-                    f"{normal/1000:.2f}",
-                    f"{bueno/1000:.2f}"
+                    f"{malo:.2f}",
+                    f"{normal:.2f}",
+                    f"{bueno:.2f}"
                 ]
             }
             st.table(escenarios_data)
