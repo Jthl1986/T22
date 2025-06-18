@@ -525,19 +525,25 @@ def app4():
             import numpy as np
             rendimientos = np.array(rendimientos)
             
-            # Percentiles exactos
-            malo = np.percentile(rendimientos, 25)  # Primer cuartil (P25)
-            normal = np.percentile(rendimientos, 50)  # Mediana (P50)
-            bueno = np.percentile(rendimientos, 75)  # Tercer cuartil (P75)
+            # Calcular los límites de los percentiles
+            p25 = np.percentile(rendimientos, 25)
+            p50 = np.percentile(rendimientos, 50)
+            p75 = np.percentile(rendimientos, 75)
+            
+            # Calcular promedios dentro de cada segmento
+            malo = rendimientos[rendimientos <= p25].mean() if len(rendimientos[rendimientos <= p25]) > 0 else p25
+            normal = rendimientos[(rendimientos > p25) & (rendimientos < p75)].mean() if len(rendimientos[(rendimientos > p25) & (rendimientos < p75)]) > 0 else p50
+            bueno = rendimientos[rendimientos >= p75].mean() if len(rendimientos[rendimientos >= p75]) > 0 else p75
             
             # Crear tabla de resultados
             escenarios_data = {
-                "Escenario": ["Malo", "Normal", "Bueno"],
+                "Escenario": ["Malo (promedio P0-P25)", "Normal (promedio P25-P75)", "Bueno (promedio P75-P100)"],
                 "Rendimiento (tn/ha)": [
                     f"{malo:.2f}",
                     f"{normal:.2f}",
                     f"{bueno:.2f}"
-                ]
+                ],
+                "Percentil de corte": ["P25", "P25-P75", "P75"]
             }
             st.table(escenarios_data)
         else:
