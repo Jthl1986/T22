@@ -528,7 +528,7 @@ def app4():
         return round(promedios_por_cultivo.iloc[0,1]/1000,2)
         
 #LECTURA VARIABLES
-    df = pd.read_csv('https://raw.githubusercontent.com/Jthl1986/T1/main/variablessep24vf2.csv')
+    df = pd.read_csv('https://raw.githubusercontent.com/Jthl1986/T1/main/variablesmar25vf.csv')
 
     # Crear un diccionario para almacenar las variables y valores
     variables_dict = {}
