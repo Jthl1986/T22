@@ -522,18 +522,13 @@ def app4():
         rendimientos = df_filtrado['Rendimiento'].astype(float).tolist()
         
         if len(rendimientos) >= 3:
-            # Ordenar los rendimientos
-            rendimientos.sort()
+            import numpy as np
+            rendimientos = np.array(rendimientos)
             
-            # Calcular índices para los percentiles
-            n = len(rendimientos)
-            idx_bajo = max(0, n // 3 - 1)  # Tercio inferior
-            idx_alto = min(n - 1, 2 * n // 3)  # Tercio superior
-            
-            # Calcular promedios por escenario
-            malo = sum(rendimientos[:idx_bajo + 1]) / (idx_bajo + 1) if idx_bajo >= 0 else rendimientos[0]
-            bueno = sum(rendimientos[idx_alto:]) / (n - idx_alto)
-            normal = sum(rendimientos) / n
+            # Percentiles exactos
+            malo = np.percentile(rendimientos, 25)  # Primer cuartil (P25)
+            normal = np.percentile(rendimientos, 50)  # Mediana (P50)
+            bueno = np.percentile(rendimientos, 75)  # Tercer cuartil (P75)
             
             # Crear tabla de resultados
             escenarios_data = {
