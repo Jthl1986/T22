@@ -515,27 +515,27 @@ def app4():
         else:
             st.warning("No se encontraron datos con las selecciones realizadas.")
             
-         # Nueva sección para calcular y mostrar escenarios
+        # Nueva sección para calcular y mostrar escenarios
             st.subheader("Escenarios de Rendimiento")
-            
-            # Calcular los escenarios usando percentiles
+           
+           # Calcular los escenarios usando percentiles
             rendimientos = df_filtrado['Rendimiento'].astype(float).tolist()
-            
+           
             if len(rendimientos) >= 3:
-                # Ordenar los rendimientos
+               # Ordenar los rendimientos
                 rendimientos.sort()
-                
-                # Calcular índices para los percentiles
+               
+               # Calcular índices para los percentiles
                 n = len(rendimientos)
                 idx_bajo = max(0, n // 3 - 1)  # Tercio inferior
                 idx_alto = min(n - 1, 2 * n // 3)  # Tercio superior
-                
-                # Calcular promedios por escenario
+               
+               # Calcular promedios por escenario
                 malo = sum(rendimientos[:idx_bajo + 1]) / (idx_bajo + 1) if idx_bajo >= 0 else rendimientos[0]
                 bueno = sum(rendimientos[idx_alto:]) / (n - idx_alto)
                 normal = sum(rendimientos) / n
-                
-                # Crear tabla de resultados
+               
+               # Crear tabla de resultados
                 escenarios_data = {
                     "Escenario": ["Malo", "Normal", "Bueno"],
                     "Rendimiento (tn/ha)": [
