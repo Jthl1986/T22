@@ -537,7 +537,7 @@ def app4():
             
             # Crear tabla de resultados
             escenarios_data = {
-                "Escenario": ["Malo (promedio P0-P25)", "Normal (promedio P25-P75)", "Bueno (promedio P75-P100)"],
+                "Escenario": ["Malo", "Normal", "Bueno"],
                 "Rendimiento (tn/ha)": [
                     f"{malo:.2f}",
                     f"{normal:.2f}",
