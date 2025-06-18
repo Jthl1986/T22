@@ -552,24 +552,28 @@ def app4():
         st.subheader("Visualización de Escenarios")
         
         if len(rendimientos) >= 3:
+            # Asegurarnos de usar los valores numéricos ya convertidos a tn/ha
+            df_filtrado['Rendimiento_tn'] = df_filtrado['Rendimiento'] / 1000  # Conversión a tn/ha
             
             fig, ax = plt.subplots(figsize=(10, 6))
             
-            # Convertir campañas a datetime si es posible (para eje X ordenado)
+            # Convertir campañas a datetime si es posible
             try:
-                df_filtrado['Campaña_dt'] = pd.to_datetime(df_filtrado['Campaña'], format='%Y/%Y')
+                # Extraer solo el año inicial para convertir a datetime
+                df_filtrado['Año'] = df_filtrado['Campaña'].str.split('/').str[0]
+                df_filtrado['Campaña_dt'] = pd.to_datetime(df_filtrado['Año'], format='%Y')
                 x_vals = df_filtrado['Campaña_dt']
                 x_label = "Campaña"
             except:
                 x_vals = df_filtrado['Campaña'].astype(str)
-                x_label = "Campaña (texto)"
+                x_label = "Campaña"
             
-            # Gráfico de línea de la serie histórica
-            ax.plot(x_vals, df_filtrado['Rendimiento'], 
+            # Gráfico de línea usando los valores ya convertidos
+            ax.plot(x_vals, df_filtrado['Rendimiento_tn'], 
                     marker='o', linestyle='-', color='#1f77b4', 
                     label='Rendimiento histórico')
             
-            # Líneas horizontales para los escenarios
+            # Líneas horizontales usando los valores calculados (ya en tn/ha)
             ax.axhline(normal, color='green', linestyle='--', alpha=0.7, label='Normal')
             ax.axhline(bueno, color='blue', linestyle=':', alpha=0.7, label='Bueno')
             ax.axhline(malo, color='red', linestyle='-.', alpha=0.7, label='Malo')
@@ -586,7 +590,7 @@ def app4():
             ax.set_title(f"Rendimientos históricos y escenarios - {cultivos_seleccionados}")
             ax.set_xlabel(x_label)
             ax.set_ylabel("Rendimiento (tn/ha)")
-            ax.legend()
+            ax.legend(loc='upper left')
             ax.grid(True, linestyle='--', alpha=0.6)
             
             # Rotar etiquetas del eje X si son muchas
