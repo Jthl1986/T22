@@ -1047,7 +1047,7 @@ def app5():
     df_gruesa = st.session_state.dfp[(st.session_state.dfp['Cultivo'] != "Trigo") & (st.session_state.dfp['Cultivo'] != "Cebada")]
     
     if dfp is not None:
-        st.subheader("Planteo productivo - Campaña 2024/2025")
+        st.subheader("Planteo productivo - Campaña 2025/2026")
         ingtotal = st.session_state.dfp['Ingreso'].sum()
         costtotal = st.session_state.dfp['Costos directos'].sum()
         gctotal = st.session_state.dfp['Gastos comercialización'].sum()
