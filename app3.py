@@ -1031,6 +1031,10 @@ def app9():
     st.subheader("Datos de otros cultivos (arroz, algodón, maní, legumbres, etc)")
     sagyp_link = "https://www.magyp.gob.ar/sitio/areas/analisis_economico/tablero/agricolas/arroz-algodon-legumbres.php?accion=imp"
     st.markdown(f"**[Resultados de cultivos Arroz, algodón, maní, legumbres]({sagyp_link})**")
+    
+    st.subheader("Informe semanal ROSGAN (ganadería)")
+    rosgan_link = "https://www.rosgan.com.ar/lote-de-noticias/"
+    st.markdown(f"**[Informes ROSGAN]({rosgan_link})**")
         
 def app5():
     left, right = st.columns(2)
