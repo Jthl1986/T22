@@ -315,16 +315,7 @@ def app2():
     return st.session_state.dfx
     
 def app3():
-    st.title("⛅️ Estado de los campos")
-    with st.expander("Recomendaciones de interpretación"):
-     st.write("""
-         - Para ver el panorama general de sequía ir a ¿Qué zonas estan en sequía? y buscar en "unidad administrativa de nivel 2" la localidad donde estan los campos
-         - En caso de estar en área de sequía ver la sección "Evolución de sequías entre dos períodos" para ver si se registraron mejoras en los ultimos meses.
-         - En la sección ¿Hace cuanto que no llueve? se puede ver la última información de precipitaciones
-         - Tener en cuenta que el mapa de calor se conforma con la información recolectada de las estaciones por lo que algunas áreas con pocas estaciones (como por ejemplo zona centro este de Santa Fe) pueden verse influenciadas por estaciones más lejanas
-     """)
-    components.iframe("https://dashboard.crc-sas.org/informes/como-estamos/", height = 1500)
-    st.caption("Datos extraidos de https://sissa.crc-sas.org/novedades/publicaciones-y-reportes-tecnicos/")
+    st.title("⛅️ Riesgo climático (en construcción)")
 
 
 # Variable global para almacenar departamento_seleccionado
@@ -1424,7 +1415,7 @@ elif my_button == 'Tenencia granos':
     app1()
 elif my_button == 'Servicios agrícolas':
     app2()
-elif my_button == 'Condiciones climáticas':
+elif my_button == 'Riesgo climático':
     app3()
 elif my_button == 'Sitios de utilidad':
     app9()
