@@ -1408,7 +1408,7 @@ with st.sidebar:
     url = "https://raw.githubusercontent.com/Jthl1986/T1/master/logo.png"
     st.markdown(f'<div style="margin-top: -140px;"><img src="{url}" style="object-fit: cover; width: 100%; height: 100%;"></div>', unsafe_allow_html=True)
     st.markdown('<h1 style="margin-top: -110px; text-align: center;">AgroApp</h1>', unsafe_allow_html=True)
-my_button = st.sidebar.radio("Modulos",('Planteo productivo', 'Condiciones climáticas', 'Tenencia granos', 'Tenencia hacienda', 'Servicios agrícolas', 'Sitios de utilidad', 'Cuadro resumen'))
+my_button = st.sidebar.radio("Modulos",('Planteo productivo', 'Riesgo climático', 'Tenencia granos', 'Tenencia hacienda', 'Servicios agrícolas', 'Sitios de utilidad', 'Cuadro resumen'))
 if my_button == 'Tenencia hacienda':
     app()
 elif my_button == 'Tenencia granos':
