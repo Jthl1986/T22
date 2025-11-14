@@ -1007,11 +1007,7 @@ def app9():
     st.subheader("Reservas hídricas y evolución cultivos semanal - INTA SEPA")
     inta_semanal_link = "https://www.argentina.gob.ar/agromet-semanal"
     st.markdown(f"**[Reservas hídricas INTA (todas las regiones)]({inta_semanal_link})**")
-    
-    st.subheader("Mapa de Reservas hídricas - Todo el país")
-    ora_semanal_link = "https://www.meteoblue.com/es/tiempo/mapas/federal_argentina_3433956#coords=4/-34.55/-61.8&map=soilMoisture~daily~auto~40-100%20cm%20down~none"
-    st.markdown(f"**[Reservas hídricas (Meteoblue)]({ora_semanal_link})**")
-     
+        
     st.subheader("Informe semanal zona núcleo - GEA - Bolsa de Rosario")
     gea_semanal_link = "https://www.bcr.com.ar/es/mercados/gea/seguimiento-de-cultivos/informe-semanal-zona-nucleo"
     st.markdown(f"**[Informe semanal Zona Núcleo]({gea_semanal_link})**")
@@ -1144,7 +1140,6 @@ def app5():
         left, center, right = st.columns(3)
         gastos_arrendamiento_estimados = left.checkbox("Los gastos de arrendamiento fueron estimados")
         gastos_estructura_estimados = center.checkbox("Los gastos de estructura fueron estimados")
-        mejoresrindes = right.checkbox("Fueron contempladas campañas sin sequía")
         # Mensaje sobre los gastos de arrendamiento
         mensaje_arrendamiento = ("Los gastos de arrendamiento fueron estimados de acuerdo a valores de mercado por zona suministrados por organismos públicos."
                          if gastos_arrendamiento_estimados and arrend != 0
@@ -1153,7 +1148,7 @@ def app5():
         # Mensaje sobre los gastos de estructura
         mensaje_estructura = "fueron estimados de acuerdo a información suministrada por la Secretaria de Agricultura, Ganadería y Pesca" if gastos_estructura_estimados else "corresponden a los informados por el socio"
 
-        st.write(f"**Aclaraciones del cálculo:** Los rindes utilizados para la proyección corresponden al promedio histórico para las últimas campañas (desde 2013/2014 a 2024/2025) para el departamento de {st.session_state.departamento_seleccionado}, provincia de {st.session_state.provincia_seleccionada}. {mensaje_arrendamiento} Los gastos de estructura {mensaje_estructura}.")
+        st.write(f"**Aclaraciones del cálculo:** Los rindes utilizados para la proyección corresponden al promedio histórico para las mejores últimas campañas (desde 2013/2014 a 2024/2025) para el departamento de {st.session_state.departamento_seleccionado}, provincia de {st.session_state.provincia_seleccionada}. {mensaje_arrendamiento} Los gastos de estructura {mensaje_estructura}.")
         
         
         # Barras en tres columnas izquierda
@@ -1473,6 +1468,6 @@ with st.sidebar:
     Desarrollado por JSantacecilia  y JSaborido
     para Equipo Agro 
     """, unsafe_allow_html=True)
-    st.caption("Datos del Informe Marzo 2025 SAGYP")
+    st.caption("Datos del Informe Septiembre 2025 SAGYP")
     abrir_google_maps()
     #st_lottie(lottie_book, speed=0.5, height=50, key="initial")
