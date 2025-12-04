@@ -491,21 +491,6 @@ def app4():
         
         df_filtrado = dfr[filtro_provincia & filtro_departamento & filtro_cultivos]
         
-        # Mostrar los rendimientos en una tabla
-        if not df_filtrado.empty:
-            df_filtrado['Rendimiento'] /= 1000  # Dividir por 1000
-            df_filtrado['Rendimiento'] = df_filtrado['Rendimiento'].apply(lambda x: '{:.2f}'.format(x))  # Formatear a dos decimales
-            # Crear checkboxes con etiquetas de campañas
-            st.table(df_filtrado[['Campaña', 'Rendimiento']])
-            selected_rendimientos = st.checkbox("Seleccionar campañas", df_filtrado['Campaña'].astype(str).tolist(), key="checkboxes")
-        
-            # Calcular el promedio de los rendimientos seleccionados
-            if selected_rendimientos:
-                promedio_seleccionado = df_filtrado[df_filtrado['Campaña'].astype(str).isin(st.multiselect("Campañas", df_filtrado['Campaña'].astype(str).unique()))]['Rendimiento'].astype(float).mean()
-                st.write(f"Promedio de rendimientos seleccionados: {promedio_seleccionado:.2f} tn/ha")
-        else:
-            st.warning("No se encontraron datos con las selecciones realizadas.")
-            
         # Nueva sección para calcular y mostrar escenarios
         st.subheader("Escenarios de Rendimiento")
         
@@ -539,6 +524,23 @@ def app4():
             st.table(escenarios_data)
         else:
             st.warning("Se requieren al menos 3 campañas para calcular los escenarios")
+            
+        # Mostrar los rendimientos en una tabla
+        if not df_filtrado.empty:
+            df_filtrado['Rendimiento'] /= 1000  # Dividir por 1000
+            df_filtrado['Rendimiento'] = df_filtrado['Rendimiento'].apply(lambda x: '{:.2f}'.format(x))  # Formatear a dos decimales
+            # Crear checkboxes con etiquetas de campañas
+            st.table(df_filtrado[['Campaña', 'Rendimiento']])
+            selected_rendimientos = st.checkbox("Seleccionar campañas", df_filtrado['Campaña'].astype(str).tolist(), key="checkboxes")
+        
+            # Calcular el promedio de los rendimientos seleccionados
+            if selected_rendimientos:
+                promedio_seleccionado = df_filtrado[df_filtrado['Campaña'].astype(str).isin(st.multiselect("Campañas", df_filtrado['Campaña'].astype(str).unique()))]['Rendimiento'].astype(float).mean()
+                st.write(f"Promedio de rendimientos seleccionados: {promedio_seleccionado:.2f} tn/ha")
+        else:
+            st.warning("No se encontraron datos con las selecciones realizadas.")
+            
+
           
         
 #RINDE AUTOMATICO
