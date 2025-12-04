@@ -440,7 +440,7 @@ def app4():
     cord = ["CORDOBA"] #Sur y Centro Cba
     stafe = ["SANTA FE"]#Santa Fe centro y norte
     neaoeste = ["SANTIAGO DEL ESTERO"]
-    noap = ["CATAMARCA","JUJUY","LA RIOJA","SALTA","SANTIAGO DEL ESTERO"]
+    noap = ["CATAMARCA","JUJUY","LA RIOJA","SALTA","SANTIAGO DEL ESTERO", "TUCUMAN"]
     
     if st.session_state.provincia_seleccionada in nea_este:
         region = "NEA Este"
