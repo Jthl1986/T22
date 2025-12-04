@@ -976,7 +976,7 @@ def app4():
                     with col2:
                         st.markdown("**Valores aplicados:**")
                         st.markdown(f"- Superficie: {row['Superficie (has)']} ha")
-                        st.markdown(f"- Rendimiento: {row['Rinde']} tn/ha")
+                        st.markdown(f"- Rinde: {row['Rinde']} tn/ha")
                         
                         # Obtener precio y gasto para este cultivo específico
                         cultivo_tipo = row['Cultivo']
@@ -984,8 +984,8 @@ def app4():
                         costo_actual = float(obtener_costo(region, cultivo_tipo))
                         gasto_actual = float(obtener_gasvar(region, cultivo_tipo))
                         
-                        st.markdown(f"- Precio estimado: ${precio_actual:,.2f}/tn")
-                        st.markdown(f"- Costo directo/ha: ${costo_actual:,.2f}")
+                        st.markdown(f"- Cotización grano: u$s {precio_actual:,.2f}/tn")
+                        st.markdown(f"- Costo directo/ha: u$s {costo_actual:,.2f}")
                         st.markdown(f"- % Gastos comercialización: {gasto_actual*100:.1f}%")
                         
                         if row['Campos     '].strip() == "Aparcería":
