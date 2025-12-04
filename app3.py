@@ -950,7 +950,6 @@ def app4():
     st.dataframe(st.session_state.dfp.style.format({"Superficie (has)":"{:.0f}", "Rinde":"{:,}", "Ingreso":"${:,}", "Costos directos":"${:,}", "Gastos comercialización":"${:,}", "Margen bruto":"${:,}", "RindeRegion":"{:,}", "RindeIndif":"{:,}"}))
     css()
     
-    # NUEVO CÓDIGO: Expander para mostrar cálculos detallados
     # NUEVO CÓDIGO: Expander para mostrar cálculos detallados (SIN ANIDAR)
     if not st.session_state.dfp.empty:
         with st.expander("📊 Ver detalles del cálculo de márgenes"):
@@ -968,7 +967,7 @@ def app4():
                     
                     with col1:
                         st.markdown("**Fórmulas utilizadas:**")
-                        st.markdown("- **Ingreso** = Precio × Rendimiento × Superficie")
+                        st.markdown("- **Ingreso** = Precio × Rinde × Superficie")
                         st.markdown("- **Costos directos** = Costo/ha × Superficie")
                         st.markdown("- **Gastos de comercialización** = Porcentaje de gastos × Ingreso")
                         st.markdown("- **Margen bruto** = Ingreso - Costos directos - Gastos de comercialización")
@@ -1001,7 +1000,7 @@ def app4():
                     if row['Campos     '].strip() == "Aparcería":
                         ingreso_base = precio_actual * dol * row['Rinde'] * row['Superficie (has)']
                         ingreso_final = ingreso_base * aparceria
-                        st.markdown(f"1. **Ingreso base**: ${precio_actual:,.2f}/tn × {dol} USD/tn × {row['Rinde']} tn/ha × {row['Superficie (has)']} ha = ${ingreso_base:,.0f}")
+                        st.markdown(f"1. **Ingreso base**: u$s {precio_actual:,.2f}/tn × {dol}  × {row['Rinde']} tn/ha × {row['Superficie (has)']} ha = ${ingreso_base:,.0f}")
                         st.markdown(f"2. **Ajuste por aparcería**: ${ingreso_base:,.0f} × {aparceria*100:.0f}% = **${ingreso_final:,.0f}**")
                     else:
                         ingreso_final = precio_actual * dol * row['Rinde'] * row['Superficie (has)']
