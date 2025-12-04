@@ -542,16 +542,45 @@ def app4():
           
         
 #RINDE AUTOMATICO
+    # RINDE AUTOMATICO - Versión que calcula el escenario normal internamente
     def rindeautomatico(tipo):
         cultivos_seleccionados = tipo
+        
         # Filtrar el DataFrame según las selecciones del usuario
         filtro_provincia = (dfr['Provincia'] == st.session_state.provincia_seleccionada)
         filtro_departamento = (dfr['Departamento'] == st.session_state.departamento_seleccionado)
         filtro_cultivos = dfr['Cultivo'].isin([cultivos_seleccionados])
         df_filtrado = dfr[filtro_provincia & filtro_departamento & filtro_cultivos]
-        # Calcular el promedio de los rendimientos para cada cultivo seleccionado
-        promedios_por_cultivo = df_filtrado.groupby('Cultivo')['Rendimiento'].mean().reset_index()
-        return round(promedios_por_cultivo.iloc[0,1]/1000,2)
+        
+        # Verificar si hay datos suficientes para calcular escenarios
+        rendimientos = df_filtrado['Rendimiento'].astype(float).tolist()
+        
+        if len(rendimientos) >= 3:
+            import numpy as np
+            rendimientos = np.array(rendimientos)
+            
+            # Calcular percentiles para el escenario normal
+            p25 = np.percentile(rendimientos, 25)
+            p75 = np.percentile(rendimientos, 75)
+            
+            # Calcular el promedio del segmento normal (P25-P75)
+            rendimientos_normales = rendimientos[(rendimientos > p25) & (rendimientos <= p75)]
+            
+            if len(rendimientos_normales) > 0:
+                normal = rendimientos_normales.mean()
+            else:
+                # Si no hay valores en el rango normal, usar la mediana
+                normal = np.percentile(rendimientos, 50)
+            
+            # Convertir a tn/ha y redondear
+            return round(normal / 1000, 2)
+        else:
+            # Si no hay suficientes datos, calcular el promedio tradicional
+            if not df_filtrado.empty:
+                promedios_por_cultivo = df_filtrado.groupby('Cultivo')['Rendimiento'].mean().reset_index()
+                return round(promedios_por_cultivo.iloc[0,1]/1000,2)
+            else:
+                return 0  # O algún valor por defecto
         
 #LECTURA VARIABLES
     df = pd.read_csv('https://raw.githubusercontent.com/Jthl1986/T1/main/variablessep25vf1.csv')
