@@ -950,6 +950,134 @@ def app4():
     st.dataframe(st.session_state.dfp.style.format({"Superficie (has)":"{:.0f}", "Rinde":"{:,}", "Ingreso":"${:,}", "Costos directos":"${:,}", "Gastos comercialización":"${:,}", "Margen bruto":"${:,}", "RindeRegion":"{:,}", "RindeIndif":"{:,}"}))
     css()
     
+    # NUEVO CÓDIGO: Expander para mostrar cálculos detallados
+    if not st.session_state.dfp.empty:
+        with st.expander("📊 Ver detalles del cálculo"):
+            st.subheader("Detalle del cálculo de márgenes")
+            st.write("Este expander muestra cómo se calcularon los ingresos, costos directos y gastos de comercialización para cada cultivo.")
+            
+            # Mostrar cálculos para cada fila de la tabla
+            for index, row in st.session_state.dfp.iterrows():
+                with st.expander(f"Cálculo para {row['Cultivo']} - {row['Campos     '].strip()}"):
+                    col1, col2 = st.columns(2)
+                    
+                    with col1:
+                        st.markdown("**Fórmulas utilizadas:**")
+                        st.markdown("- **Ingreso** = Precio × Rendimiento × Superficie")
+                        st.markdown("- **Costos directos** = Costo/ha × Superficie")
+                        st.markdown("- **Gastos de comercialización** = Porcentaje de gastos × Ingreso")
+                        st.markdown("- **Margen bruto** = Ingreso - Costos directos - Gastos de comercialización")
+                    
+                    with col2:
+                        st.markdown("**Valores aplicados:**")
+                        st.markdown(f"- Superficie: {row['Superficie (has)']} ha")
+                        st.markdown(f"- Rendimiento: {row['Rinde']} tn/ha")
+                        
+                        # Obtener precio y gasto para este cultivo específico
+                        cultivo_tipo = row['Cultivo']
+                        precio_actual = float(obtener_precio(cultivo_tipo))
+                        costo_actual = float(obtener_costo(region, cultivo_tipo))
+                        gasto_actual = float(obtener_gasvar(region, cultivo_tipo))
+                        
+                        st.markdown(f"- Precio estimado: ${precio_actual:,.2f}/tn")
+                        st.markdown(f"- Costo directo/ha: ${costo_actual:,.2f}")
+                        st.markdown(f"- % Gastos comercialización: {gasto_actual*100:.1f}%")
+                        
+                        if row['Campos     '].strip() == "Aparcería":
+                            st.markdown(f"- % Aparcería: {aparceria*100:.0f}%")
+                            st.markdown("*(En aparcería, ingresos y costos se comparten según porcentaje)*")
+                    
+                    st.divider()
+                    
+                    # Mostrar cálculo paso a paso
+                    st.markdown("**Cálculo paso a paso:**")
+                    
+                    # Cálculo de ingresos
+                    if row['Campos     '].strip() == "Aparcería":
+                        ingreso_base = precio_actual * dol * row['Rinde'] * row['Superficie (has)']
+                        ingreso_final = ingreso_base * aparceria
+                        st.markdown(f"1. **Ingreso base**: ${precio_actual:,.2f}/tn × {dol} USD/tn × {row['Rinde']} tn/ha × {row['Superficie (has)']} ha = ${ingreso_base:,.0f}")
+                        st.markdown(f"2. **Ajuste por aparcería**: ${ingreso_base:,.0f} × {aparceria*100:.0f}% = **${ingreso_final:,.0f}**")
+                    else:
+                        ingreso_final = precio_actual * dol * row['Rinde'] * row['Superficie (has)']
+                        st.markdown(f"1. **Ingreso**: ${precio_actual:,.2f}/tn × {dol} USD/tn × {row['Rinde']} tn/ha × {row['Superficie (has)']} ha = **${ingreso_final:,.0f}**")
+                    
+                    # Cálculo de costos directos
+                    if row['Campos     '].strip() == "Aparcería":
+                        costo_base = costo_actual * dol * row['Superficie (has)']
+                        costo_final = costo_base * aparceria
+                        st.markdown(f"3. **Costo directo base**: ${costo_actual:,.2f}/ha × {dol} USD/ha × {row['Superficie (has)']} ha = ${costo_base:,.0f}")
+                        st.markdown(f"4. **Ajuste por aparcería**: ${costo_base:,.0f} × {aparceria*100:.0f}% = **${costo_final:,.0f}**")
+                    else:
+                        costo_final = costo_actual * dol * row['Superficie (has)']
+                        st.markdown(f"2. **Costo directo**: ${costo_actual:,.2f}/ha × {dol} USD/ha × {row['Superficie (has)']} ha = **${costo_final:,.0f}**")
+                    
+                    # Cálculo de gastos de comercialización
+                    gasto_final = gasto_actual * ingreso_final
+                    st.markdown(f"5. **Gastos de comercialización**: {gasto_actual*100:.1f}% × ${ingreso_final:,.0f} = **${gasto_final:,.0f}**")
+                    
+                    # Cálculo de margen bruto
+                    margen_final = ingreso_final - costo_final - gasto_final
+                    st.markdown(f"6. **Margen bruto**: ${ingreso_final:,.0f} - ${costo_final:,.0f} - ${gasto_final:,.0f} = **${margen_final:,.0f}**")
+                    
+                    # Verificación con valores de la tabla
+                    st.divider()
+                    st.markdown("**Verificación con valores de la tabla:**")
+                    
+                    col_ver1, col_ver2, col_ver3, col_ver4 = st.columns(4)
+                    
+                    with col_ver1:
+                        st.metric("Ingreso tabla", f"${row['Ingreso']:,.0f}", 
+                                 f"${ingreso_final-row['Ingreso']:,.0f}" if abs(ingreso_final-row['Ingreso']) > 1 else "")
+                    
+                    with col_ver2:
+                        st.metric("Costos tabla", f"${row['Costos directos']:,.0f}", 
+                                 f"${costo_final-row['Costos directos']:,.0f}" if abs(costo_final-row['Costos directos']) > 1 else "")
+                    
+                    with col_ver3:
+                        st.metric("Gastos tabla", f"${row['Gastos comercialización']:,.0f}", 
+                                 f"${gasto_final-row['Gastos comercialización']:,.0f}" if abs(gasto_final-row['Gastos comercialización']) > 1 else "")
+                    
+                    with col_ver4:
+                        st.metric("Margen tabla", f"${row['Margen bruto']:,.0f}", 
+                                 f"${margen_final-row['Margen bruto']:,.0f}" if abs(margen_final-row['Margen bruto']) > 1 else "")
+            
+            # Resumen de fórmulas generales
+            st.divider()
+            st.subheader("Fórmulas generales")
+            
+            formula_col1, formula_col2 = st.columns(2)
+            
+            with formula_col1:
+                st.markdown("**Campos propios/arrendados:**")
+                st.markdown("""
+                ```
+                Ingreso = Precio × Dólar × Rendimiento × Superficie
+                Costos directos = Costo/ha × Dólar × Superficie
+                Gastos comercialización = %Gastos × Ingreso
+                Margen bruto = Ingreso - Costos - Gastos
+                ```
+                """)
+            
+            with formula_col2:
+                st.markdown("**Campos en aparcería:**")
+                st.markdown("""
+                ```
+                Ingreso = (Precio × Dólar × Rendimiento × Superficie) × %Aparcería
+                Costos directos = (Costo/ha × Dólar × Superficie) × %Aparcería
+                Gastos comercialización = %Gastos × Ingreso
+                Margen bruto = Ingreso - Costos - Gastos
+                ```
+                """)
+            
+            # Notas adicionales
+            st.info("""
+            **Notas:**
+            1. Los valores se redondean al número entero más cercano en la tabla principal
+            2. El dólar utilizado es el valor del dólar mayorista mostrado arriba
+            3. Los porcentajes de gastos de comercialización varían según cultivo y región
+            4. Los costos directos incluyen insumos, labores y otros costos específicos del cultivo
+            """)
            
     if submit:
         if propio == "Propios":
