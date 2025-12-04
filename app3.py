@@ -382,6 +382,9 @@ def app4():
         print(f"No se pudo acceder al archivo JSON. Código de estado: {response.status_code}")
     
     # Versión ultra-simple que funciona siempre
+   import streamlit as st
+
+    # Versión ultra-simple que funciona siempre
     st.markdown("""
     <style>
         .easter-corn {
@@ -404,9 +407,13 @@ def app4():
     <h1>
         <a href="https://sociologia1unpsjb.wordpress.com/wp-content/uploads/2008/03/marx-manifiesto-comunista.pdf" 
            target="_blank" 
-           style="text-decoration: none; color: inher
-    
-    #st.title("🌽 Planteo productivo")
+           style="text-decoration: none; color: inherit;"
+           class="easter-corn">
+            🌽
+        </a>
+        Planteo productivo
+    </h1>
+    """, unsafe_allow_html=True)
     left, center, right = st.columns(3)
 
 
