@@ -395,7 +395,7 @@ def app4():
     else:
        print("Failed to retrieve data")
     
-    #dol = float(1401) #En caso de fallas
+    #dol = float(1401) #En caso de fallas sacar el numero del principio de la línea
     left.metric("Dolar mayorista", '${:,}'.format(float(dol)))
      
 #SELECCIÓN DEPARTAMENTE Y PROVINCIA (INICIALIZACION)
@@ -554,7 +554,7 @@ def app4():
         return round(promedios_por_cultivo.iloc[0,1]/1000,2)
         
 #LECTURA VARIABLES
-    df = pd.read_csv('https://raw.githubusercontent.com/Jthl1986/T1/main/variablessep25vf.csv')
+    df = pd.read_csv('https://raw.githubusercontent.com/Jthl1986/T1/main/variablessep25vf1.csv')
 
     # Crear un diccionario para almacenar las variables y valores
     variables_dict = {}
