@@ -1024,34 +1024,6 @@ def app4():
                     margen_final = ingreso_final - costo_final - gasto_final
                     st.markdown(f"6. **Margen bruto**: ${ingreso_final:,.0f} - ${costo_final:,.0f} - ${gasto_final:,.0f} = **${margen_final:,.0f}**")
                                 
-            # Resumen de fórmulas generales
-            st.divider()
-            st.subheader("Fórmulas generales")
-            
-            formula_col1, formula_col2 = st.columns(2)
-            
-            with formula_col1:
-                st.markdown("**Campos propios/arrendados:**")
-                st.markdown("""
-                ```
-                Ingreso = Precio × Dólar × Rendimiento × Superficie
-                Costos directos = Costo/ha × Dólar × Superficie
-                Gastos comercialización = %Gastos × Ingreso
-                Margen bruto = Ingreso - Costos - Gastos
-                ```
-                """)
-            
-            with formula_col2:
-                st.markdown("**Campos en aparcería:**")
-                st.markdown("""
-                ```
-                Ingreso = (Precio × Dólar × Rendimiento × Superficie) × %Aparcería
-                Costos directos = (Costo/ha × Dólar × Superficie) × %Aparcería
-                Gastos comercialización = %Gastos × Ingreso
-                Margen bruto = Ingreso - Costos - Gastos
-                ```
-                """)
-            
                
         if submit:
             if propio == "Propios":
