@@ -55,11 +55,11 @@ def css():
     st.markdown(hide_table_row_index, unsafe_allow_html=True)
 
 #LOTTIE
-#def load_lottieurl(url: str):
-#    r = requests.get(url)
-#    if r.status_code != 200:
-#        return None
-#    return r.json()
+def load_lottieurl(url: str):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
 
 #VALORES DE MANTENIMIENTO
 valorminc = 75700 #valor minimo cosecha
@@ -1566,4 +1566,4 @@ with st.sidebar:
     """, unsafe_allow_html=True)
     st.caption("Datos del Informe Septiembre 2025 SAGYP")
     abrir_google_maps()
-    #st_lottie(lottie_book, speed=0.5, height=50, key="initial")
+    st_lottie(lottie_book, speed=0.5, height=50, key="initial")
