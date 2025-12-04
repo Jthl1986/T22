@@ -508,8 +508,8 @@ def app4():
             
             # Calcular promedios dentro de cada segmento
             malo = rendimientos[rendimientos <= p25].mean()/1000 if len(rendimientos[rendimientos <= p25]) > 0 else p25
-            normal = rendimientos[(rendimientos > p25) & (rendimientos <= p75)].mean() if len(rendimientos[(rendimientos > p25) & (rendimientos <= p75)]) > 0 else p50
-            bueno = rendimientos[rendimientos > p75].mean() if len(rendimientos[rendimientos > p75]) > 0 else p75
+            normal = rendimientos[(rendimientos > p25) & (rendimientos <= p75)].mean()/1000 if len(rendimientos[(rendimientos > p25) & (rendimientos <= p75)]) > 0 else p50
+            bueno = rendimientos[rendimientos > p75].mean()/1000 if len(rendimientos[rendimientos > p75]) > 0 else p75
             
             # Crear tabla de resultados
             escenarios_data = {
