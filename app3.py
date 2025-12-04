@@ -381,8 +381,7 @@ def app4():
     else:
         print(f"No se pudo acceder al archivo JSON. Código de estado: {response.status_code}")
     
-    # Versión ultra-simple que funciona siempre
-   import streamlit as st
+
 
     # Versión ultra-simple que funciona siempre
     st.markdown("""
