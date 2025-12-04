@@ -951,14 +951,19 @@ def app4():
     css()
     
     # NUEVO CÓDIGO: Expander para mostrar cálculos detallados
+    # NUEVO CÓDIGO: Expander para mostrar cálculos detallados (SIN ANIDAR)
     if not st.session_state.dfp.empty:
-        with st.expander("📊 Ver detalles del cálculo"):
-            st.subheader("Detalle del cálculo de márgenes")
-            st.write("Este expander muestra cómo se calcularon los ingresos, costos directos y gastos de comercialización para cada cultivo.")
+        with st.expander("📊 Ver detalles del cálculo de márgenes"):
+            st.write("Este panel muestra cómo se calcularon los ingresos, costos directos y gastos de comercialización para cada cultivo.")
             
-            # Mostrar cálculos para cada fila de la tabla
-            for index, row in st.session_state.dfp.iterrows():
-                with st.expander(f"Cálculo para {row['Cultivo']} - {row['Campos     '].strip()}"):
+            # Usar tabs en lugar de expanders anidados
+            tabs = st.tabs([f"{row['Cultivo']} - {row['Campos     '].strip()}" 
+                           for index, row in st.session_state.dfp.iterrows()])
+            
+            for idx, tab in enumerate(tabs):
+                with tab:
+                    row = st.session_state.dfp.iloc[idx]
+                    
                     col1, col2 = st.columns(2)
                     
                     with col1:
@@ -1027,20 +1032,24 @@ def app4():
                     col_ver1, col_ver2, col_ver3, col_ver4 = st.columns(4)
                     
                     with col_ver1:
+                        diferencia_ingreso = ingreso_final - row['Ingreso']
                         st.metric("Ingreso tabla", f"${row['Ingreso']:,.0f}", 
-                                 f"${ingreso_final-row['Ingreso']:,.0f}" if abs(ingreso_final-row['Ingreso']) > 1 else "")
+                                 f"{diferencia_ingreso:,.0f}" if abs(diferencia_ingreso) > 1 else "✓")
                     
                     with col_ver2:
+                        diferencia_costo = costo_final - row['Costos directos']
                         st.metric("Costos tabla", f"${row['Costos directos']:,.0f}", 
-                                 f"${costo_final-row['Costos directos']:,.0f}" if abs(costo_final-row['Costos directos']) > 1 else "")
+                                 f"{diferencia_costo:,.0f}" if abs(diferencia_costo) > 1 else "✓")
                     
                     with col_ver3:
+                        diferencia_gasto = gasto_final - row['Gastos comercialización']
                         st.metric("Gastos tabla", f"${row['Gastos comercialización']:,.0f}", 
-                                 f"${gasto_final-row['Gastos comercialización']:,.0f}" if abs(gasto_final-row['Gastos comercialización']) > 1 else "")
+                                 f"{diferencia_gasto:,.0f}" if abs(diferencia_gasto) > 1 else "✓")
                     
                     with col_ver4:
+                        diferencia_margen = margen_final - row['Margen bruto']
                         st.metric("Margen tabla", f"${row['Margen bruto']:,.0f}", 
-                                 f"${margen_final-row['Margen bruto']:,.0f}" if abs(margen_final-row['Margen bruto']) > 1 else "")
+                                 f"{diferencia_margen:,.0f}" if abs(diferencia_margen) > 1 else "✓")
             
             # Resumen de fórmulas generales
             st.divider()
@@ -1078,25 +1087,25 @@ def app4():
             3. Los porcentajes de gastos de comercialización varían según cultivo y región
             4. Los costos directos incluyen insumos, labores y otros costos específicos del cultivo
             """)
-           
-    if submit:
-        if propio == "Propios":
-            gastos_estructura1()
-        else:
-            gastos_estructura2()
+               
+        if submit:
+            if propio == "Propios":
+                gastos_estructura1()
+            else:
+                gastos_estructura2()
+        
+        if st.session_state.dfp is not None:
+            heca_arrendados = st.session_state.dfp.loc[st.session_state.dfp['Campos     '] == 'Arrendados', 'Superficie (has)'].sum()
+            hecp_propios = st.session_state.dfp.loc[st.session_state.dfp['Campos     '] == 'Propios', 'Superficie (has)'].sum()
+            hecp_aparceria = st.session_state.dfp.loc[st.session_state.dfp['Campos     '] == 'Aparcería', 'Superficie (has)'].sum()
+            heca = heca_arrendados + hecp_aparceria
+            hecp = hecp_propios
+            nro_hectareas = heca + hecp
     
-    if st.session_state.dfp is not None:
-        heca_arrendados = st.session_state.dfp.loc[st.session_state.dfp['Campos     '] == 'Arrendados', 'Superficie (has)'].sum()
-        hecp_propios = st.session_state.dfp.loc[st.session_state.dfp['Campos     '] == 'Propios', 'Superficie (has)'].sum()
-        hecp_aparceria = st.session_state.dfp.loc[st.session_state.dfp['Campos     '] == 'Aparcería', 'Superficie (has)'].sum()
-        heca = heca_arrendados + hecp_aparceria
-        hecp = hecp_propios
-        nro_hectareas = heca + hecp
-
-        if nro_hectareas > 0:
-            gastos = sum(st.session_state.gespr) + sum(st.session_state.gesar)
-            gestimado = gastos
-                        
+            if nro_hectareas > 0:
+                gastos = sum(st.session_state.gespr) + sum(st.session_state.gesar)
+                gestimado = gastos
+                            
          
     if submit:
         if propio == "Arrendados":
