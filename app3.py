@@ -480,51 +480,39 @@ def app4():
     on = left.toggle("Activar rinde automático")
 
 #PRUEBA    
-    with left.expander("Análisis de Rendimientos"):
-        cultivos = dfr['Cultivo'].unique()
-        cultivos_seleccionados = st.selectbox("Cultivos", cultivos)
-        
-        # Filtrar el DataFrame según las selecciones del usuario
-        filtro_provincia = (dfr['Provincia'] == st.session_state.provincia_seleccionada)
-        filtro_departamento = (dfr['Departamento'] == st.session_state.departamento_seleccionado)
-        filtro_cultivos = dfr['Cultivo'].isin([cultivos_seleccionados])
-        
-        df_filtrado = dfr[filtro_provincia & filtro_departamento & filtro_cultivos]
-        
-        # Mostrar los rendimientos en una tabla
-        if not df_filtrado.empty:
-            df_filtrado['Rendimiento'] /= 1000  # Dividir por 1000
-            df_filtrado['Rendimiento'] = df_filtrado['Rendimiento'].apply(lambda x: '{:.2f}'.format(x))  # Formatear a dos decimales
-            # Crear checkboxes con etiquetas de campañas
-            st.table(df_filtrado[['Campaña', 'Rendimiento']])
-            selected_rendimientos = st.checkbox("Seleccionar campañas", df_filtrado['Campaña'].astype(str).tolist(), key="checkboxes")
-        
-            # Calcular el promedio de los rendimientos seleccionados
-            if selected_rendimientos:
-                promedio_seleccionado = df_filtrado[df_filtrado['Campaña'].astype(str).isin(st.multiselect("Campañas", df_filtrado['Campaña'].astype(str).unique()))]['Rendimiento'].astype(float).mean()
-                st.write(f"Promedio de rendimientos seleccionados: {promedio_seleccionado:.2f} tn/ha")
-        else:
-            st.warning("No se encontraron datos con las selecciones realizadas.")
-            
-        # Nueva sección para calcular y mostrar escenarios
-        st.subheader("Escenarios de Rendimiento")
-        
+with left.expander("Análisis de Rendimientos"):
+    cultivos = dfr['Cultivo'].unique()
+    cultivos_seleccionados = st.selectbox("Cultivos", cultivos)
+    
+    # Filtrar el DataFrame según las selecciones del usuario
+    filtro_provincia = (dfr['Provincia'] == st.session_state.provincia_seleccionada)
+    filtro_departamento = (dfr['Departamento'] == st.session_state.departamento_seleccionado)
+    filtro_cultivos = dfr['Cultivo'].isin([cultivos_seleccionados])
+    
+    df_filtrado = dfr[filtro_provincia & filtro_departamento & filtro_cultivos]
+    
+    # ===== NUEVO ORDEN: Primero mostrar los escenarios =====
+    
+    # Nueva sección para calcular y mostrar escenarios (PRIMERO)
+    st.subheader("Escenarios de Rendimiento")
+    
+    if not df_filtrado.empty:
         # Calcular los escenarios usando percentiles
-        rendimientos = df_filtrado['Rendimiento'].astype(float).tolist()
+        rendimientos_para_escenarios = df_filtrado['Rendimiento'].astype(float).tolist()
         
-        if len(rendimientos) >= 3:
+        if len(rendimientos_para_escenarios) >= 3:
             import numpy as np
-            rendimientos = np.array(rendimientos)
+            rendimientos_para_escenarios = np.array(rendimientos_para_escenarios)
             
             # Calcular los límites de los percentiles
-            p25 = np.percentile(rendimientos, 25)
-            p50 = np.percentile(rendimientos, 50)
-            p75 = np.percentile(rendimientos, 75)
+            p25 = np.percentile(rendimientos_para_escenarios, 25)
+            p50 = np.percentile(rendimientos_para_escenarios, 50)
+            p75 = np.percentile(rendimientos_para_escenarios, 75)
             
             # Calcular promedios dentro de cada segmento
-            malo = rendimientos[rendimientos <= p25].mean() if len(rendimientos[rendimientos <= p25]) > 0 else p25
-            normal = rendimientos[(rendimientos > p25) & (rendimientos <= p75)].mean() if len(rendimientos[(rendimientos > p25) & (rendimientos <= p75)]) > 0 else p50
-            bueno = rendimientos[rendimientos > p75].mean() if len(rendimientos[rendimientos > p75]) > 0 else p75
+            malo = rendimientos_para_escenarios[rendimientos_para_escenarios <= p25].mean() if len(rendimientos_para_escenarios[rendimientos_para_escenarios <= p25]) > 0 else p25
+            normal = rendimientos_para_escenarios[(rendimientos_para_escenarios > p25) & (rendimientos_para_escenarios <= p75)].mean() if len(rendimientos_para_escenarios[(rendimientos_para_escenarios > p25) & (rendimientos_para_escenarios <= p75)]) > 0 else p50
+            bueno = rendimientos_para_escenarios[rendimientos_para_escenarios > p75].mean() if len(rendimientos_para_escenarios[rendimientos_para_escenarios > p75]) > 0 else p75
             
             # Crear tabla de resultados
             escenarios_data = {
@@ -539,7 +527,38 @@ def app4():
             st.table(escenarios_data)
         else:
             st.warning("Se requieren al menos 3 campañas para calcular los escenarios")
-          
+        
+        # ===== Luego mostrar los rendimientos históricos =====
+        
+        st.subheader("Rendimientos Históricos")
+        
+        # Preparar y mostrar los rendimientos históricos en una tabla
+        df_filtrado_historico = df_filtrado.copy()
+        df_filtrado_historico['Rendimiento'] = df_filtrado_historico['Rendimiento'].astype(float) / 1000  # Dividir por 1000
+        df_filtrado_historico['Rendimiento'] = df_filtrado_historico['Rendimiento'].apply(lambda x: '{:.2f}'.format(x))  # Formatear a dos decimales
+        
+        # Mostrar tabla de rendimientos históricos
+        st.table(df_filtrado_historico[['Campaña', 'Rendimiento']])
+        
+        # Opciones para seleccionar campañas específicas
+        selected_rendimientos = st.checkbox("Seleccionar campañas específicas", key="checkboxes")
+        
+        if selected_rendimientos:
+            # Multiselect para elegir campañas
+            campañas_seleccionadas = st.multiselect(
+                "Seleccionar campañas para calcular promedio",
+                df_filtrado_historico['Campaña'].astype(str).unique()
+            )
+            
+            if campañas_seleccionadas:
+                # Calcular el promedio de los rendimientos seleccionados
+                promedio_seleccionado = df_filtrado_historico[
+                    df_filtrado_historico['Campaña'].astype(str).isin(campañas_seleccionadas)
+                ]['Rendimiento'].astype(float).mean()
+                
+                st.write(f"Promedio de rendimientos seleccionados: {promedio_seleccionado:.2f} tn/ha")
+    else:
+        st.warning("No se encontraron datos con las selecciones realizadas.")         
         
 #RINDE AUTOMATICO
     def rindeautomatico(tipo):
