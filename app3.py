@@ -381,37 +381,31 @@ def app4():
     else:
         print(f"No se pudo acceder al archivo JSON. Código de estado: {response.status_code}")
     
-        # CSS y JavaScript para hacer el maíz clickeable
+    # Versión ultra-simple que funciona siempre
     st.markdown("""
     <style>
-        .corn-link {
+        .easter-corn {
             cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        .corn-link:hover {
-            transform: scale(1.2);
+            font-size: 1.8em;
             display: inline-block;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        .easter-corn:hover {
+            transform: scale(1.4);
+            animation: corn-spin 0.5s linear;
+        }
+        @keyframes corn-spin {
+            0% { transform: scale(1.4) rotate(0deg); }
+            100% { transform: scale(1.4) rotate(360deg); }
         }
     </style>
     
-    <script>
-        function redirectToEasterEgg() {
-            // Redirigir a una página especial
-            window.open('https://sociologia1unpsjb.wordpress.com/wp-content/uploads/2008/03/marx-manifiesto-comunista.pdf', '_blank');
-            
-            // O mostrar algo en Streamlit (menos recomendado)
-            // Streamlit.setComponentValue('corn_clicked');
-        }
-    </script>
-    """, unsafe_allow_html=True)
-    
-    # Título con maíz clickeable
-    st.markdown("""
     <h1>
-        <span class="corn-link" onclick="redirectToEasterEgg()">🌽</span> Planteo productivo
-    </h1>
-    """, unsafe_allow_html=True)
-
+        <a href="https://sociologia1unpsjb.wordpress.com/wp-content/uploads/2008/03/marx-manifiesto-comunista.pdf" 
+           target="_blank" 
+           style="text-decoration: none; color: inher
+    
     #st.title("🌽 Planteo productivo")
     left, center, right = st.columns(3)
 
