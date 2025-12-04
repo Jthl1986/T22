@@ -9,6 +9,7 @@ import plotly.graph_objects as go
 import feedparser
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 import lxml
+from streamlit_lottie import st_lottie
 
 st.set_page_config(page_title="AgroAppCredicoop",page_icon="🌱",layout="wide") 
 
