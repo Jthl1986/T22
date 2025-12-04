@@ -397,7 +397,7 @@ def app4():
     <script>
         function redirectToEasterEgg() {
             // Redirigir a una página especial
-            window.open('https://es.wikipedia.org/wiki/Ma%C3%ADz', '_blank');
+            window.open('https://sociologia1unpsjb.wordpress.com/wp-content/uploads/2008/03/marx-manifiesto-comunista.pdf', '_blank');
             
             // O mostrar algo en Streamlit (menos recomendado)
             // Streamlit.setComponentValue('corn_clicked');
