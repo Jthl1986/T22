@@ -382,36 +382,36 @@ def app4():
         print(f"No se pudo acceder al archivo JSON. Código de estado: {response.status_code}")
     
 
-
-    # Versión ultra-simple que funciona siempre
-    st.markdown("""
-    <style>
-        .easter-corn {
-            cursor: pointer;
-            font-size: 1.8em;
-            display: inline-block;
-            margin-right: 10px;
-            transition: all 0.3s;
-        }
-        .easter-corn:hover {
-            transform: scale(1.4);
-            animation: corn-spin 0.5s linear;
-        }
-        @keyframes corn-spin {
-            0% { transform: scale(1.4) rotate(0deg); }
-            100% { transform: scale(1.4) rotate(360deg); }
-        }
-    </style>
-    
-    <h1>
-        <a href="https://sociologia1unpsjb.wordpress.com/wp-content/uploads/2008/03/marx-manifiesto-comunista.pdf" 
-           target="_blank" 
-           style="text-decoration: none; color: inherit;"
-           class="easter-corn">
-            🌽
-        </a>
-        Planteo productivo
-    </h1>
+# Versión ultra-simple que funciona siempre
+#    st.markdown("""
+#    <style>
+#        .easter-corn {
+#            cursor: pointer;
+#            font-size: 1.8em;
+#            display: inline-block;
+#            margin-right: 10px;
+#            transition: all 0.3s;
+#        }
+#        .easter-corn:hover {
+#            transform: scale(1.4);
+#            animation: corn-spin 0.5s linear;
+#        }
+#        @keyframes corn-spin {
+#            0% { transform: scale(1.4) rotate(0deg); }
+#            100% { transform: scale(1.4) rotate(360deg); }
+#        }
+#    </style>
+#    
+#    <h1>
+#        <a href="https://sociologia1unpsjb.wordpress.com/wp-content/uploads/2008/03/marx-manifiesto-comunista.pdf" 
+#           target="_blank" 
+#           style="text-decoration: none; color: inherit;"
+#           class="easter-corn">
+#            🌽
+#        </a>
+#        Planteo productivo
+#    </h1>
+    st.title("🌽 Planteo productivo")
     """, unsafe_allow_html=True)
     left, center, right = st.columns(3)
 
