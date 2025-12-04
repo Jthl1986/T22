@@ -1024,33 +1024,7 @@ def app4():
                     # Cálculo de margen bruto
                     margen_final = ingreso_final - costo_final - gasto_final
                     st.markdown(f"6. **Margen bruto**: ${ingreso_final:,.0f} - ${costo_final:,.0f} - ${gasto_final:,.0f} = **${margen_final:,.0f}**")
-                    
-                    # Verificación con valores de la tabla
-                    st.divider()
-                    st.markdown("**Verificación con valores de la tabla:**")
-                    
-                    col_ver1, col_ver2, col_ver3, col_ver4 = st.columns(4)
-                    
-                    with col_ver1:
-                        diferencia_ingreso = ingreso_final - row['Ingreso']
-                        st.metric("Ingreso tabla", f"${row['Ingreso']:,.0f}", 
-                                 f"{diferencia_ingreso:,.0f}" if abs(diferencia_ingreso) > 1 else "✓")
-                    
-                    with col_ver2:
-                        diferencia_costo = costo_final - row['Costos directos']
-                        st.metric("Costos tabla", f"${row['Costos directos']:,.0f}", 
-                                 f"{diferencia_costo:,.0f}" if abs(diferencia_costo) > 1 else "✓")
-                    
-                    with col_ver3:
-                        diferencia_gasto = gasto_final - row['Gastos comercialización']
-                        st.metric("Gastos tabla", f"${row['Gastos comercialización']:,.0f}", 
-                                 f"{diferencia_gasto:,.0f}" if abs(diferencia_gasto) > 1 else "✓")
-                    
-                    with col_ver4:
-                        diferencia_margen = margen_final - row['Margen bruto']
-                        st.metric("Margen tabla", f"${row['Margen bruto']:,.0f}", 
-                                 f"{diferencia_margen:,.0f}" if abs(diferencia_margen) > 1 else "✓")
-            
+                                
             # Resumen de fórmulas generales
             st.divider()
             st.subheader("Fórmulas generales")
