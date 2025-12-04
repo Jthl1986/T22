@@ -1079,14 +1079,6 @@ def app4():
                 ```
                 """)
             
-            # Notas adicionales
-            st.info("""
-            **Notas:**
-            1. Los valores se redondean al número entero más cercano en la tabla principal
-            2. El dólar utilizado es el valor del dólar mayorista mostrado arriba
-            3. Los porcentajes de gastos de comercialización varían según cultivo y región
-            4. Los costos directos incluyen insumos, labores y otros costos específicos del cultivo
-            """)
                
         if submit:
             if propio == "Propios":
