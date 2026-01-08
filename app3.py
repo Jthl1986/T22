@@ -210,7 +210,7 @@ fecha1 = pizarra_data["fecha"] #"11/04/2024" #   Sacar fecha y numeral y tabular
 # Asignar los valores a las variables con los nombres personalizados
 pptrigo = valores_rosario["pptrigo"]    
 ppsoja = valores_rosario["ppsoja"]     
-ppmaiz = 291700 #valores_rosario["ppmaiz"]     
+ppmaiz = valores_rosario["ppmaiz"]     
 ppgirasol = valores_rosario["ppgirasol"] 
 ppsorgo = valores_rosario["ppsorgo"]     
 
